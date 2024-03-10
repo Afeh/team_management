@@ -21,14 +21,23 @@
             <div class="mb-3">
               <label for="name" class="form-label">First Name</label>
               <input type="text" class="form-control" id="first_name" name="first_name" value="{{ form.instance.first_name }}">
+              {% for error in form.errors.first_name %}
+                <div class="text-danger">{{ error }}</div>
+              {% endfor %}
             </div>
 			<div class="mb-3">
 				<label for="name" class="form-label">Last Name</label>
 				<input type="text" class="form-control" id="last_name" name="last_name" value="{{ form.instance.last_name }}">
+            {% for error in form.errors.last_name %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
 			  </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" name="email" value="{{ form.instance.email }}">
+              {% for error in form.errors.email %}
+                <div class="text-danger">{{ error }}</div>
+              {% endfor %}
             </div>
             <div class="mb-3">
               <label for="phone_number" class="form-label">Phone Number</label>
@@ -56,6 +65,9 @@
                   <option value="{{ form.instance.role }}">Admin - Can delete members</option>
                 {% endif %}
               </select>
+              {% for error in form.errors.role %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
             </div>
             <button type="submit" class="btn btn-primary">Add Team Member</button>
           </form>

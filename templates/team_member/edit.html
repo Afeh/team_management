@@ -13,59 +13,102 @@
   </head>
   <body>
     <div class="container">
-		<h1 class="my-4 text-center">Edit Team Member</h1>
-		<div class="row justify-content-center">
-		  <div class="col-md-6 col-lg-4">
-			<form method="post">
-			  {% csrf_token %}
-			  <div class="mb-3">
-				<label for="first_name" class="form-label">First Name</label>
-				<input type="text" class="form-control" id="first_name" name="first_name" value="{{ form.instance.first_name }}">
-			  </div>
-			  <div class="mb-3">
-				<label for="last_name" class="form-label">Last Name</label>
-				<input type="text" class="form-control" id="last_name" name="last_name" value="{{ form.instance.last_name }}">
-			  </div>
-			  <div class="mb-3">
-				<label for="email" class="form-label">Email</label>
-				<input type="email" class="form-control" id="email" name="email" value="{{ form.instance.email }}">
-			  </div>
-			  <div class="mb-3">
-				<label for="phone_number" class="form-label">Phone Number</label>
-				<input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{ form.instance.phone_number }}">
-			  </div>
-			  <div class="mb-3">
-				<label for="role" class="form-label">Role</label>
-				<select class="form-select" id="role" name="role">
-				  {% if form.instance.pk %}
-					{% if form.instance.role == "admin" %}
-					  <option value="admin">Admin - Can delete members</option>
-					  <option value="regular">Regular - Can't delete members</option>
-					{% else %}
-					  <option value="regular">Regular - Can't delete members</option>
-					  <option value="admin">Admin - Can delete members</option>
-					{% endif %}
-				  {% else %}
-					<option value="regular">Regular - Can't delete members</option>
-					<option value="admin">Admin - Can delete members</option>
-				  {% endif %}
-				</select>
-			  </div>
-			  {% if form.instance.pk %}
-			  <button type="submit" class="btn btn-primary">Save</button>
-			  <a href="{% url 'team_member_delete' pk=form.instance.pk %}" class="btn btn-danger ms-2">Delete</a>
-			  {% else %}
-			  <button type="submit" class="btn btn-primary">Add Team Member</button>
-			  {% endif %}
-			</form>
-		  </div>
-		</div>
-	  </div>
-	
+      <h1 class="my-4 text-center">Edit Team Member</h1>
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="first_name" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="first_name"
+                name="first_name"
+                value="{{ form.instance.first_name }}"
+              />
+			  {% for error in form.errors.first_name %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+              <label for="last_name" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="last_name"
+                name="last_name"
+                value="{{ form.instance.last_name }}"
+              />
+			  {% for error in form.errors.last_name %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                value="{{ form.instance.email }}"
+              />
+              {% for error in form.errors.email %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+              <label for="phone_number" class="form-label">Phone Number</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="phone_number"
+                name="phone_number"
+                value="{{ form.instance.phone_number }}"
+              />
+              {% for error in form.errors.phone_number %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label">Role</label>
+              <select class="form-select" id="role" name="role">
+                {% if form.instance.pk %} {% if form.instance.role == "admin" %}
+                <option value="admin">Admin - Can delete members</option>
+                <option value="regular">Regular - Can't delete members</option>
+                {% else %}
+                <option value="regular">Regular - Can't delete members</option>
+                <option value="admin">Admin - Can delete members</option>
+                {% endif %} {% else %}
+                <option value="regular">Regular - Can't delete members</option>
+                <option value="admin">Admin - Can delete members</option>
+                {% endif %}
+              </select>
+			  {% for error in form.errors.role %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+            </div>
+            {% if form.instance.pk %}
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a
+              href="{% url 'team_member_delete' pk=form.instance.pk %}"
+              class="btn btn-danger ms-2"
+              >Delete</a
+            >
+            {% else %}
+            <button type="submit" class="btn btn-primary">
+              Add Team Member
+            </button>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
   </body>
-</html> 
+</html>
