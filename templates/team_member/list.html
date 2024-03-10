@@ -49,6 +49,8 @@
                   placeholder="Search by first name, last name, role, or email"
                 />
                 <button class="btn btn-primary" type="submit">Search</button>
+                {% if search_query %}  <button class="btn btn-outline-dark" type="submit">Clear Search</button>
+                {% endif %}
               </div>
             </form>
           </div>
