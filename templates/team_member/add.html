@@ -19,7 +19,7 @@
           <div class="mb-3">
             <label for="name" class="form-label">First Name</label>
             <input type="text" class="form-control" id="first_name" name="first_name"
-              value="{{ form.instance.first_name }}">
+              value="{{ form.first_name.value }}">
             {% for error in form.errors.first_name %}
             <div class="text-danger">{{ error }}</div>
             {% endfor %}
@@ -27,14 +27,14 @@
           <div class="mb-3">
             <label for="name" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="last_name" name="last_name"
-              value="{{ form.instance.last_name }}">
+              value="{{ form.last_name.value }}">
             {% for error in form.errors.last_name %}
             <div class="text-danger">{{ error }}</div>
             {% endfor %}
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ form.instance.email }}">
+            <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}">
             {% for error in form.errors.email %}
             <div class="text-danger">{{ error }}</div>
             {% endfor %}
@@ -42,7 +42,7 @@
           <div class="mb-3">
             <label for="phone_number" class="form-label">Phone Number</label>
             <input type="tel" class="form-control" id="phone_number" name="phone_number"
-              value="{{ form.instance.phone_number }}">
+              value="{{ form.phone_number.value }}">
 
             <!-- Show errors -->
             {% for error in form.errors.phone_number %}
@@ -54,7 +54,7 @@
             <label for="role" class="form-label">Role</label>
             <select class="form-select" id="role" name="role">
               {% for role in roles%}
-              <option value="{{role.id}}" {% if form.instance.role == role.id %} selected {% endif %}>{{role.role}}
+              <option value="{{role.id}}" {% if form.role.value == role.id %} selected {% endif %}>{{role.role}}
               </option>
               {% endfor %}
             </select>
