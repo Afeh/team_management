@@ -33,6 +33,12 @@
             <div class="mb-3">
               <label for="phone_number" class="form-label">Phone Number</label>
               <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{ form.instance.phone_number }}">
+              
+              <!-- Show errors -->
+              {% for error in form.errors.phone_number %}
+                <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+                
             </div>
             <div class="mb-3">
               <label for="role" class="form-label">Role</label>
