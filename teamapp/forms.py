@@ -9,7 +9,7 @@ class TeamMemberForm(forms.Form):
     email = forms.EmailField()
     phone_number = PhoneNumberField()
     role = forms.IntegerField()
-    
+
     instance: User = None
 
     def clean_role(self):

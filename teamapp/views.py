@@ -62,7 +62,7 @@ class TeamMemberUpdateView(FormView):
         form = super().get_form(form_class)
         form.instance = User.objects.get(id=self.kwargs.get('pk'))
         return form
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['roles'] = Role.objects.all()
