@@ -53,10 +53,10 @@
           <div class="mb-3">
             <label for="role" class="form-label">Role</label>
             <select class="form-select" id="role" name="role">
-              <option value="admin" {% if form.instance.role == 'admin' %} selected {% endif %}>Admin - Can delete members
+              {% for role in roles%}
+              <option value="{{role.id}}" {% if form.instance.role == role.id %} selected {% endif %}>{{role.role}}
               </option>
-              <option value="regular" {% if form.instance.role == 'regular' %} selected {% endif %}>Regular - Can't delete
-                members</option>
+              {% endfor %}
             </select>
             {% for error in form.errors.role %}
             <div class="text-danger">{{ error }}</div>

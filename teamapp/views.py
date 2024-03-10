@@ -1,7 +1,7 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from django.db.models import Q  # For search functionality
-from .models import Profile
+from .models import Profile, Role
 from .forms import TeamMemberForm
 from django.shortcuts import redirect
 
@@ -24,8 +24,8 @@ class TeamMemberListView(ListView):
         return context  # return updated context
 
 
-class TeamMemberCreateView(CreateView):
-    model = Profile
+class TeamMemberCreateView(FormView):
+    # model = Profile
     form_class = TeamMemberForm
     template_name = 'team_member/add.html'
     # Redirection after successful creation
@@ -33,6 +33,7 @@ class TeamMemberCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['roles']= Role.objects.all()
         context['title'] = 'Add Team Member'  # Set Page Title
         return context
 
