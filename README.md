@@ -46,6 +46,14 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+## Setup the Roles
+
+This command creates the Admin and Regular default roles.
+
+```bash
+python manage.py create-roles
+```
+
 ## Run Server
 
 ```bash
